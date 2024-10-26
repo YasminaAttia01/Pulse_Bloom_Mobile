@@ -11,7 +11,7 @@ class ImageWidget extends StatelessWidget {
       height: 406,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage("https://via.placeholder.com/407x406"),
+          image: AssetImage("images/Hello.png"),
           fit: BoxFit.cover,
         ),
       ),

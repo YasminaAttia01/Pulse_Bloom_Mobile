@@ -1,8 +1,6 @@
-// views/home.dart
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'widgets/image_widget.dart';
 import 'widgets/welcome_text_widget.dart';
 import 'widgets/subtitle_widget.dart';
 import 'widgets/dots_indicator_widget.dart';
@@ -49,14 +47,22 @@ class Home extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ImageWidget(),
+          // Utilisation de l'image locale
+          Image.asset('assets/images/Hello.png'),
+          SizedBox(
+              height: 20), // Espacement entre l'image et le texte de bienvenue
           WelcomeTextWidget(),
+          SizedBox(
+              height:
+                  10), // Espacement entre le texte de bienvenue et le sous-titre
           SubtitleWidget(),
+          SizedBox(
+              height: 20), // Espacement entre le sous-titre et le dot indicator
           DotsIndicatorWidget(),
+          SizedBox(height: 30), // Espacement avant le bouton
           Button(
             buttonText: 'Get Started',
             nextScreen: NextScreen(),
