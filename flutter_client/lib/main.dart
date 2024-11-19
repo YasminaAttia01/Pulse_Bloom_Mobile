@@ -1,8 +1,9 @@
 // main.dart
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, unused_import
 
 import 'package:flutter/material.dart';
-import 'views/home.dart'; 
+import 'views/home.dart';
+import 'responsive/responsive.dart';
 
 void main() {
   runApp(MyApp());
