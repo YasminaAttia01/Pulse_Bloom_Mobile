@@ -9,6 +9,7 @@ import '../widgets/SocialSignIn.dart';
 import '../widgets/SignUpLink.dart';
 import '../widgets/button.dart';
 import '../constants/app_colors.dart';
+import './PatientHome.dart';
 
 class LogIn extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _LogInState extends State<LogIn> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => NextScreen(),
+            builder: (context) => PatientHome(),
           ),
         );
       }
@@ -50,6 +51,8 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:
+          Colors.white, // Set the background color of the whole Scaffold
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -70,7 +73,8 @@ class _LogInState extends State<LogIn> {
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color:
+                    Colors.white, // Set the background color of the container
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Form(
@@ -200,23 +204,6 @@ class _LogInState extends State<LogIn> {
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class NextScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Next Screen'),
-      ),
-      body: Center(
-        child: Text(
-          'Welcome to the next screen!',
-          style: TextStyle(fontSize: 24),
         ),
       ),
     );
