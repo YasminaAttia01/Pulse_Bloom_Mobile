@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import '../widgets/BottomAppBar.dart';
-import '../views/home.dart';
-import '../views/Settings.dart'; // Ensure the import is correct
+import '../../widgets/BottomAppBar.dart';
+import '../home.dart';
+import "Settings.dart";
+import 'ProfileSetting.dart';
+import "../payment/Payment.dart";
 
 class UserProfilePage extends StatefulWidget {
   @override
@@ -21,12 +23,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
-        _image = File(pickedFile.path); // Update the profile picture
+        _image = File(pickedFile.path);
       });
     }
   }
 
-  // Function to show the logout confirmation dialog
   void _showLogoutConfirmation() {
     showModalBottomSheet(
       context: context,
@@ -81,10 +82,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Profile',
-            style: TextStyle(
-              color: Color(0xFF0B82D4),
-            )),
+        title: Text(
+          'My Profile',
+          style: TextStyle(
+            color: Color(0xFF0B82D4),
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
@@ -100,7 +103,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Stack(
               alignment: Alignment.topRight,
@@ -108,7 +111,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 CircleAvatar(
                   radius: 50,
                   backgroundImage: _image == null
-                      ? AssetImage('assets/images/user.png') // Default image
+                      ? AssetImage('assets/images/user.png')
                       : FileImage(_image!) as ImageProvider,
                 ),
                 Container(
@@ -132,9 +135,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 32),
-            // Profile Options
             Expanded(
               child: ListView(
                 children: [
@@ -142,7 +145,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     icon: Icons.person,
                     title: 'Profile',
                     onTap: () {
-                      // Navigate to Profile page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProfileSetting()),
+                      );
                     },
                   ),
                   _ProfileOptionItem(
@@ -156,7 +163,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     icon: Icons.payment,
                     title: 'Payment Method',
                     onTap: () {
-                      // Navigate to Payment Method page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PaymentMethodScreen()),
+                      );
                     },
                   ),
                   _ProfileOptionItem(
@@ -172,9 +183,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                SettingsPage()), // Corrected navigation
+                        MaterialPageRoute(builder: (context) => SettingsPage()),
                       );
                     },
                   ),
@@ -193,7 +202,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 ],
               ),
             ),
-
             CustomBottomNavBar(),
             SizedBox(height: 16),
           ],

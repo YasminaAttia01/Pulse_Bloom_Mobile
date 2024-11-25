@@ -1,9 +1,9 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../views/DoctorProfile.dart';
-import '../models/Doctor.dart'; // Import Doctor model only if needed
-import '../widgets/doctors.dart'; // Ensure this file includes DoctorCard and other widgets
+import 'DoctorProfile.dart';
+import '../../models/Doctor.dart'; // Import Doctor model only if needed
+import '../../widgets/doctors.dart'; // Ensure this file includes DoctorCard and other widgets
 
 class Doctors extends StatelessWidget {
   final List<Doctor> doctors = [

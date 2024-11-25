@@ -1,8 +1,9 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors, file_names, non_constant_identifier_names, library_prefixes
 
 import 'package:flutter/material.dart';
-import 'package:pulse_bloom_mobile/views/login.dart';
-import 'package:pulse_bloom_mobile/views/signup.dart' as signupPage;
+import 'package:pulse_bloom_mobile/views/authentication/login.dart';
+import 'package:pulse_bloom_mobile/views/authentication/signup.dart'
+    as signupPage;
 import '../widgets/button.dart';
 import '../constants/app_colors.dart';
 

@@ -1,9 +1,11 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
-import '../widgets/loginheader.dart';
-import '../widgets/InputField.dart';
-import '../widgets/button.dart';
-import '../constants/app_colors.dart';
+import '../../widgets/loginheader.dart';
+import '../../widgets/InputField.dart';
+import '../../widgets/button.dart';
+import '../../constants/app_colors.dart';
 
 class PasswordManager extends StatefulWidget {
   @override
@@ -11,25 +13,20 @@ class PasswordManager extends StatefulWidget {
 }
 
 class _PasswordManagerState extends State<PasswordManager> {
-  // Controllers for each field
   final TextEditingController _currentPasswordController =
       TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  // Form key for validation
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // Function to handle form submission
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      // Simulate a password change success
       _showSuccessDialog();
     }
   }
 
-  // Show success dialog after password change
   void _showSuccessDialog() {
     showDialog(
       context: context,
@@ -40,9 +37,8 @@ class _PasswordManagerState extends State<PasswordManager> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                Navigator.pop(
-                    context); // Optionally go back to the previous page
+                Navigator.of(context).pop();
+                Navigator.pop(context);
               },
               child: Text('OK'),
             ),

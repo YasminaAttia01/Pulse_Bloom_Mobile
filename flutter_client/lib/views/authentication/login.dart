@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:pulse_bloom_mobile/views/signup.dart';
-import '../widgets/loginheader.dart';
-import '../widgets/InputField.dart';
-import '../widgets/SocialSignIn.dart';
-import '../widgets/SignUpLink.dart';
-import '../widgets/button.dart';
-import '../constants/app_colors.dart';
-import './PatientHome.dart';
+import 'package:pulse_bloom_mobile/views/authentication/signup.dart';
+import '../../widgets/loginheader.dart';
+import '../../widgets/InputField.dart';
+import '../../widgets/SocialSignIn.dart';
+import '../../widgets/SignUpLink.dart';
+import '../../widgets/button.dart';
+import '../../constants/app_colors.dart';
+import '../PatientHome.dart';
 
 class LogIn extends StatefulWidget {
   @override

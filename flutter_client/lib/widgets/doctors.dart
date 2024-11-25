@@ -1,8 +1,8 @@
 // ignore_for_file: unused_local_variable, use_key_in_widget_constructors, prefer_const_constructors, unused_import
 
 import 'package:flutter/material.dart';
-import '../views/DoctorProfile.dart';
-import '../views/Doctors.dart';
+import '../views/doctor/DoctorProfile.dart';
+import '../views/doctor/Doctors.dart';
 import '../models/Doctor.dart';
 
 class Doctors extends StatelessWidget {
