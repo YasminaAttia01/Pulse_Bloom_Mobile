@@ -79,9 +79,7 @@ class Doctors extends StatelessWidget {
                                 ),
                               );
                             },
-                            child: DoctorCard(
-                                doctor: doctors[
-                                    index]), // Ensure DoctorCard is correctly implemented
+                            child: DoctorCard(doctor: doctors[index]),
                           );
                         },
                       )

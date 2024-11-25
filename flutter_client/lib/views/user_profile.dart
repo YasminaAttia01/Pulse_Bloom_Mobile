@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import '../widgets/BottomAppBar.dart';
 import '../views/home.dart';
+import '../views/Settings.dart'; // Ensure the import is correct
 
 class UserProfilePage extends StatefulWidget {
   @override
@@ -169,7 +170,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     icon: Icons.settings,
                     title: 'Settings',
                     onTap: () {
-                      // Navigate to Settings page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                SettingsPage()), // Corrected navigation
+                      );
                     },
                   ),
                   _ProfileOptionItem(
