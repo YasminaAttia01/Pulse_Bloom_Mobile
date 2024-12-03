@@ -74,7 +74,8 @@ class Doctors extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Doctors()),
+                MaterialPageRoute(
+                    builder: (context) => DoctorsWidget(doctors: doctors)),
               );
             },
             child: Container(

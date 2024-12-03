@@ -5,12 +5,13 @@ import '../widgets/GreetingSection.dart';
 import '../widgets/AppointmentCard.dart'
     as appointment_card; // Alias for AppointmentCard import
 import '../widgets/doctors.dart' as doctors_widget; // Alias for doctors import
-import '../widgets/BottomAppBar.dart';
+import 'package:pulse_bloom_mobile/widgets/BottomAppBar.dart';
 
 class PatientHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // bottomNavigationBar: CustomBottomNavBar(),
       body: Container(
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 255, 255, 255),

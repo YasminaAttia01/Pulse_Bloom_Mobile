@@ -1,10 +1,9 @@
-// ignore_for_file: unused_import, file_names, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
+// ignore_for_file: unused_local_variable, file_names, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../../models/Doctor.dart';
 import '../../widgets/BottomAppBar.dart';
-import '../doctor/AvailableTimesPage.dart'; // Import the AvailableTimesPage
 
 class DoctorProfilePage extends StatefulWidget {
   final Doctor doctor;
@@ -16,15 +15,14 @@ class DoctorProfilePage extends StatefulWidget {
 }
 
 class _DoctorProfilePageState extends State<DoctorProfilePage> {
-  DateTime? _selectedDate; // Track the selected date
+  DateTime? _selectedDate;
 
-  // Method to select a date using the DatePicker
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(2023), // First available date
-      lastDate: DateTime(2101), // Last available date
+      firstDate: DateTime(2023),
+      lastDate: DateTime(2101),
     );
     if (picked != null) {
       setState(() {
@@ -35,6 +33,8 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -44,161 +44,166 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFFE8F3FF),
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 3,
-                      blurRadius: 5,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: widget.doctor.imageUrl != null
-                          ? NetworkImage(widget.doctor.imageUrl!)
-                          : AssetImage('assets/images/user.png')
-                              as ImageProvider,
-                      radius: 50,
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      widget.doctor.name,
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      widget.doctor.specialty,
-                      style: TextStyle(fontSize: 18, color: Colors.grey),
-                    ),
-                    SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.star,
-                                    color: Colors.orange, size: 18),
-                                SizedBox(width: 4),
-                                Text(
-                                  "Rating: ${widget.doctor.rating}",
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 8),
-                            Row(
-                              children: [
-                                Icon(Icons.person,
-                                    color: AppColors.primaryColor, size: 18),
-                                SizedBox(width: 4),
-                                Text(
-                                  "Consultations: ${widget.doctor.consultations}",
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 8),
-                            Row(
-                              children: [
-                                Icon(Icons.access_time,
-                                    color: Colors.grey, size: 18),
-                                SizedBox(width: 4),
-                                Text(
-                                  "Mon-Sat: 9:00 AM - 5:00 PM",
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.grey),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        ElevatedButton.icon(
-                          onPressed: () {
-                            // Select a date and navigate to AvailableTimesPage
-                            _selectDate(context).then((_) {
-                              if (_selectedDate != null) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => AvailableTimesPage(
-                                        selectedDate: _selectedDate!),
-                                  ),
-                                );
-                              }
-                            });
-                          },
-                          icon: Icon(Icons.calendar_today, size: 18),
-                          label: Text("Schedule"),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primaryColor,
-                            foregroundColor: Colors.white,
-                          ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE8F3FF),
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 1),
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
-
-                    // Highlight Selected Date
-                    if (_selectedDate != null)
-                      Text(
-                        "Selected Date: ${_selectedDate!.toLocal()}"
-                            .split(' ')[0],
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.bold,
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: widget.doctor.imageUrl != null
+                              ? NetworkImage(widget.doctor.imageUrl!)
+                              : AssetImage('assets/images/user.png')
+                                  as ImageProvider,
+                          radius: 50,
                         ),
-                      ),
-                  ],
-                ),
+                        SizedBox(height: 16),
+                        Text(
+                          widget.doctor.name,
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          widget.doctor.specialty,
+                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        ),
+                        SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(Icons.star,
+                                          color: Colors.orange, size: 18),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        "Rating: ${widget.doctor.rating}",
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 8),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.person,
+                                          color: AppColors.primaryColor,
+                                          size: 18),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        "Consultations: ${widget.doctor.consultations}",
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 8),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.access_time,
+                                          color: Colors.grey, size: 18),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        "Mon-Sat: 9:00 AM - 5:00 PM",
+                                        style: TextStyle(
+                                            fontSize: 14, color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            ElevatedButton.icon(
+                              onPressed: () {
+                                _selectDate(context).then((_) {
+                                  if (_selectedDate != null) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            AvailableTimesPage(
+                                                selectedDate: _selectedDate!),
+                                      ),
+                                    );
+                                  }
+                                });
+                              },
+                              icon: Icon(Icons.calendar_today, size: 15),
+                              label: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "Schedule",
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
+                                ],
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.primaryColor,
+                                foregroundColor: Colors.white,
+                                padding: EdgeInsets.symmetric(horizontal: 4.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 16),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Profile",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryColor),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    widget.doctor.bio ?? 'No bio available',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Career Path",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryColor),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(height: 40),
+                  CustomBottomNavBar(),
+                  SizedBox(height: 16),
+                ],
               ),
-              SizedBox(height: 20),
-              Text(
-                "Profile",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primaryColor),
-              ),
-              SizedBox(height: 8),
-              Text(
-                widget.doctor.bio ?? 'No bio available',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 20),
-              Text(
-                "Career Path",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF809CFF)),
-              ),
-              SizedBox(height: 8),
-              Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 20),
-              CustomBottomNavBar(),
-              SizedBox(height: 16),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
@@ -233,8 +238,8 @@ class _AvailableTimesPageState extends State<AvailableTimesPage> {
     '4:00 PM',
   ];
 
-  String? selectedTimeSlot; // Track selected time slot
-  bool isForSelf = true; // Track if the appointment is for 'Yourself'
+  String? selectedTimeSlot;
+  bool isForSelf = true;
 
   @override
   Widget build(BuildContext context) {
